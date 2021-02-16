@@ -7,7 +7,7 @@
   ジャンル<%=f.select :category, [["ケーキ","ケーキ"], ["プリン","プリン"], ["焼き菓子","焼き菓子"], ["キャンディ","キャンディ"]],
     include_blank: "選択して下さい" %>
   税抜価格<%=f.number_field :price %>
-  販売ステータス
+  販売ステータス 
    販売中<%=f.radio_button :is_active, true %>
    販売停止中<%=f.radio_button :is_active, false %>
   <%= f.submit '新規登録' %>
