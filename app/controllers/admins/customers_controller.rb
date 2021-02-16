@@ -1,4 +1,6 @@
 class Admins::CustomersController < ApplicationController
+  before_action :admin
+ 
   def show
   end
 
@@ -9,5 +11,6 @@ class Admins::CustomersController < ApplicationController
   end
 
   def index
+    @customers = Customer.all
   end
 end
