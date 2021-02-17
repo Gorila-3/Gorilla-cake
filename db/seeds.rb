@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # カテゴリー追加
-Category.create(name: "ケーキ")
-Category.create(name: "クッキー")
+#Category.create(name: "ケーキ")
+#Category.create(name: "クッキー")
 
 # 商品追加
-Item.create(category_id: 1, name: "いちごケーキ", introduction: "いちごが乗ったケーキです", price: 600, is_active: true)
-Item.create(category_id: 1, name: "チョコケーキ", introduction: "チョコまみれのケーキです", price: 700, is_active: true)
-Item.create(category_id: 2, name: "チョコクッキー", introduction: "チョコで埋め尽くされたクッキーです", price: 200, is_active: true)
+#Item.create(category_id: 1, name: "いちごケーキ", introduction: "いちごが乗ったケーキです", price: 600, is_active: true)
+#Item.create(category_id: 1, name: "チョコケーキ", introduction: "チョコまみれのケーキです", price: 700, is_active: true)
+#Item.create(category_id: 2, name: "チョコクッキー", introduction: "チョコで埋め尽くされたクッキーです", price: 200, is_active: true)
 
 #管理者側追加
 Admin.create(email: "admin@mail", password: "admin123")
