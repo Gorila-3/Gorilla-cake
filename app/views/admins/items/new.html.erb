@@ -1,6 +1,6 @@
 <h2>商品新規登録</h2>
 
-<%= form_with model: [:admin,@item], url: admins_items_path, method: :post, local:true do |f| %>
+<%= form_with model: @item, url: admins_items_path, method: :post, local:true do |f| %>
 <div class="form">
   <div class="form-grop-row">
     <label for ="InputImage">商品画像</label>

@@ -9,9 +9,11 @@ class Admins::ItemsController < ApplicationController
   end
 
   def create
-    @item= Item.new(item_params)
+    @item= Item.create(item_params)
+    @item_category = @item.category.name
     binding.pry
     @item.save
+    # binding.pry
     redirect_to admins_items_path
   end
 
@@ -32,7 +34,7 @@ class Admins::ItemsController < ApplicationController
  private
 
 def item_params
- params.require(:admins, :item).permit(:image,:name,:introduction,:category_id,:price,:is_active)
+ params.require(:item).permit(:image,:name,:introduction,:category_id,:price,:is_active)
 end
 
 end
