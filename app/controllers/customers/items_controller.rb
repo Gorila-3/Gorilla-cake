@@ -9,6 +9,8 @@ class Customers::ItemsController < ApplicationController
     @tax = 0.1 #消費税１０%を、ここで定義しています。
     @tax_in_price = @item.price * (1 + @tax)
     @tax_in_price = @tax_in_price.to_i #上とあわした二行で、値段を三点区切りで表示しています。なんか汚いのでいい方法あったら
+    
+    @cart_item = CartItem.new
   end
 
   def top
