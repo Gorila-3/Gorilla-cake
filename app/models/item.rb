@@ -1,3 +1,5 @@
 class Item < ApplicationRecord
- attachment :image
+  belongs_to :admin
+  belongs_to :category
+  attachment :image
 end
