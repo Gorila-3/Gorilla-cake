@@ -1,2 +1,11 @@
-<h1>Customers::Items#show</h1>
-<p>Find me in app/views/customers/items/show.html.erb</p>
+<h2>#商品詳細ページ</h2>
+
+<h3 class="item-name"><%= @item.name %></h3>
+<p class="item-introduction"><%= @item.introduction %></p>
+
+<p>¥<%= @tax_in_price.to_s(:delimited, delimiter: ',') %></p>
+<!--↑delimitedで、値段を三点区切りにしています。-->
+<p>（税込）</p>
+
+<!--↓カートに入れるための処理を描いています。-->
+
