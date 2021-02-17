@@ -9,7 +9,7 @@
           <p>商品名</p><%= @item.name %>
           <P>商品説明</p><%= @item.introduction %>
           <p>ジャンル</p><%= @item.category.name %>
-          <p>税込価格</p><%=(@item.price*@tax.round(2)).ceil%>
+          <p>税込価格</p><%= ((@item.price*(1+@tax)).to_i).to_s(:delimited, delimiter: ',')%>
           <p>税抜き価格</p>(<%= @item.price %>)円
           <p>販売ステータス</p>
         <% if @item.is_active %>
