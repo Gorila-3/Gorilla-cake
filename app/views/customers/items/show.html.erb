@@ -1,2 +1,22 @@
-<h1>Customers::Items#show</h1>
-<p>Find me in app/views/customers/items/show.html.erb</p>
+<h2>#商品詳細ページ</h2>
+
+<h3 class="item-name"><%= @item.name %></h3>
+<p class="item-introduction"><%= @item.introduction %></p>
+
+<p>¥<%= @tax_in_price.to_s(:delimited, delimiter: ',') %></p>
+<!--↑delimitedで、値段を三点区切りにしています。-->
+<p>（税込）</p>
+
+<!--↓カートに入れるための処理を描いています。-->
+
+<%= form_with model: [current_customer, @cart_item], url: customers_cart_items_path, method: :post, local:true do |f|%>
+  <%= f.select :amount, [
+  ["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"]
+  ], include_blank: "選択して下さい" %>
+
+  <%= f.hidden_field :item_id, value: @item.id%>
+  <%= f.hidden_field :customer_id, value: current_customer.id%>
+  <%= f.submit "カートに入れる "%>
+<% end %>
+
+  
