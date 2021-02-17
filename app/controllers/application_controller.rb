@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admins_items_path  #仮パス(正admins_orders_path)
-    when User
+    when Customer
       root_path
     end
   end
