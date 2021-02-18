@@ -26,7 +26,7 @@ namespace :customers do
   get 'customers/out_show' => 'customers#out_show'
   resources :items, only: [:show, :index]
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  delete 'cart_items' => 'cart_items#all_destroy'
+  delete 'cart_items' => 'cart_items#all_destroy', as: :all_destroy_customers_cart_item
   resources :orders, only: [:new, :create, :index, :show]
   get 'orders/thanks' => 'orders#thanks'
   get 'orders/check' => 'orders#check'
