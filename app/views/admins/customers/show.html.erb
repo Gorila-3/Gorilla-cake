@@ -1,7 +1,7 @@
+<div class="col-md-5 offset-md-1">
 <h2><%= @customer.last_name %>さんの会員詳細</h2>
 <table class="table">
   <tbody>
-    <tr></tr>
       <tr>
         <th>会員ID</th>
         <th><%= @customer.id %></th>
@@ -25,29 +25,31 @@
         <th><%= @customer.postal_code %></th>
       </tr>
       <tr>
-          <th>住所</th>
-          <th><%= @customer.address %></th>
+        <th>住所</th>
+        <th><%= @customer.address %></th>
       </tr>
       <tr>
-          <th>電話番号</th>
-          <th><%= @customer.telephone_number %></th>
+        <th>電話番号</th>
+        <th><%= @customer.telephone_number %></th>
       </tr>
       <tr>
-          <th>メールアドレス</th>
-          <th><%= @customer.email %></th>
+        <th>メールアドレス</th>
+        <th><%= @customer.email %></th>
       </tr>
       <tr>
-          <th>会員ステータス</th>
-          <th>
-            <% if @customer.is_deleted %>
-              退会
-            <% else %>
-              <font color="green">有効</font>
-            <% end %>
-          </th>
+        <th>会員ステータス</th>
+        <th>
+          <% if @customer.is_deleted %>
+            退会
+          <% else %>
+            <font color="green">有効</font>
+          <% end %>
+        </th>
       </tr>
   </tbody>
 </table>
-
-<%= link_to "編集する", edit_admins_customer_path(@customer.id) %>
-<%= link_to "注⽂履歴⼀覧を⾒る", admins_orders_path %>
+<div class="row">
+  <div class="col-3"><%= link_to "編集する", edit_admins_customer_path(@customer.id), class: "btn btn-success" %></div>
+  <div class="col-8"><%= link_to "注⽂履歴⼀覧を⾒る", admins_orders_path, class: "btn btn-primary" %></div>
+</div>
+</div>

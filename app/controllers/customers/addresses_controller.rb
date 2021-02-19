@@ -1,31 +1,34 @@
 class Customers::AddressesController < ApplicationController
   def create
-    @address = Address.new(address_params)
-    @address.save
+    @address = current_customer.addresses.create!(address_params)
     redirect_to customers_addresses_path
   end
 
   def index
-    @address = Address.all
+    @addresses = current_customer.addresses.all
+    @address = Address.new
   end
 
   def edit
-    @address = Address.find(params[:id])
+    @addresses = current_customer.addresses.find(params[:id])
   end
 
   def update
-    @address = Address.find(params[:id])
-    @address.save
+    @address = current_customer.addresses.find(params[:id])
+    # binding.pry
+    @address.update(address_params)
     redirect_to customers_addresses_path
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    @address.destroy
-    redirect_to edit_customers_address_path
+    @addresses = current_customer.addresses.find(params[:id])
+    @addresses.destroy
+    redirect_to customers_addresses_path
   end
   
+  private
+  
   def address_params
-    params.permit(:name, :postal_code, :address)
+    params.require(:address).permit(:name, :postal_code, :address, :customer_id)
   end
 end
