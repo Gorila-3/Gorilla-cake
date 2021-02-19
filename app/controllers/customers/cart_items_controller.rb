@@ -12,6 +12,7 @@ class Customers::CartItemsController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @tax = 0.08
     # binding.pry
+   
   end
 
   def destroy

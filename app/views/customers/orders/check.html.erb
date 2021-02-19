@@ -1,2 +1,26 @@
-<h1>Customers::Orders#check</h1>
-<p>Find me in app/views/customers/orders/check.html.erb</p>
+<main>
+  <table>
+    <title>注文情報確認</title>
+    <th>
+      <tr>
+        <td>商品名</td>
+        <td>単価(税込)</td>
+        <td>数量</td>
+        <td>小計</td>
+      </tr>
+    </th>
+    <tbody>
+      <tr>
+        <%= form_with model: [@order, @order_details], url: customers_orders_path, method: :post, local :true do  |f| %>
+          <td><%= @cart_item.name %></td>
+        <%= f. hidden_field :item_id %>
+        <td><%= ((@cart_item.price* (1+@tax)).to_i).to_s(:delimited, delimiter: ',') %></td>
+        
+        <td><%= @cart_item.amount %></td>
+        <td><%=((@cart_item.price* (1+@tax)).to_i).to_s(:delimited, delimiter: ',')* @cart_item.amount %></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</main>

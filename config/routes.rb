@@ -29,7 +29,7 @@ namespace :customers do
   delete 'cart_items' => 'cart_items#all_destroy'
   resources :orders, only: [:new, :create, :index, :show]
   get 'orders/thanks' => 'orders#thanks'
-  get 'orders/check' => 'orders#check'
+  post 'orders/check' => 'orders#check' #注文確認画面　get ⇨　post 変更
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 end
 
