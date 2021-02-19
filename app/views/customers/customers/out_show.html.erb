@@ -5,11 +5,13 @@
     <br>これまでの購⼊履歴が閲覧できなくなります。
     <br>退会する場合は、「退会する」をクリックしてください。  
   </font>
-  <br>
-  <%= link_to edit_customers_customers_path do %>
-    <button type="button" class="btn btn-primary">退会しない</button>
-  <% end %>
-  <%= link_to customers_customers_path, method: :patch do %>
-    <button type="button" class="btn btn-danger">退会する</button>
+  <br> 
+  <% if customer_signed_in? && @customer.id == current_customer.id %> 
+    <%= link_to customers_customers_path do %>
+      <button type="button" class="btn btn-primary">退会しない</button>
+    <% end %>
+    <%= link_to customers_customers_out_path, method: :patch  do %>
+      <button type="button" class="btn btn-danger">退会する</button>
+    <% end %>
   <% end %>
 </div>

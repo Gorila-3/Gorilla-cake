@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
-    <%= form_with model: @customer, url:"/admins/#{@customer.id}" local:true do |f| %>
+    <%= form_with model: @customer, url:"/admins/customers/#{@customer.id}", local:true do |f| %>
         <h4>会員ID</h4>
         <%= @customer.id %>
         <h4>氏名</h4>
@@ -20,7 +20,7 @@
         <h4>メールアドレス</h4>
         <%= f.email_field :email %>
         <h4>会員ステータス</h4>
-        <%= f.radio_button "is_deleted", 1, checked: true %>有効 <%= f.radio_button "is_deleted", 0 %>退会
+        <%= f.radio_button "is_deleted", false %>有効 <%= f.radio_button "is_deleted", true %>退会 
         <%= f.submit "変更を保存" %><br>
     <% end %>
     </div>

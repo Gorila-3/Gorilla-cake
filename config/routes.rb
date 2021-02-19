@@ -18,11 +18,12 @@ namespace :admins do
   resources :customers, only: [:index, :show, :edit, :update]
   resources :orders, only: [:index, :show, :update]
   resources :order_details, only: [:update]
+  patch '/admins/id'
 end
 
 namespace :customers do
   resource :customers, only: [:show, :edit, :update]
-  patch 'customers' => 'customers#out'
+  patch 'customers/out' => 'customers#out', as: :customers_out
   get 'customers/out_show' => 'customers#out_show'
   resources :items, only: [:show, :index]
   resources :cart_items, only: [:index, :create, :update, :destroy]
@@ -35,5 +36,5 @@ end
 
 root to: 'customers/items#top'
 get 'about' => 'customers/items#about'
-
+ 
 end

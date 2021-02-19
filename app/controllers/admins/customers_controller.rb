@@ -11,8 +11,7 @@ class Admins::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    binding.pry
-    render "edit"
+    render "show"
   end
 
   def index
