@@ -21,15 +21,22 @@ namespace :admins do
 end
 
 namespace :customers do
+  
   resource :customers, only: [:show, :edit, :update]
   patch 'customers' => 'customers#out'
   get 'customers/out_show' => 'customers#out_show'
   resources :items, only: [:show, :index]
   resources :cart_items, only: [:index, :create, :update, :destroy]
   delete 'cart_items' => 'cart_items#all_destroy', as: :all_destroy_customers_cart_item
-  resources :orders, only: [:new, :create, :index, :show]
-  get 'orders/thanks' => 'orders#thanks'
-  post 'orders/check' => 'orders#check' #注文確認画面　get ⇨　post 変更
+  
+  resources :orders, only: [:new, :create, :show, :index] do   
+    collection do
+  post'/check'  => 'orders#check' #注文確認画面　get ⇨　post 変更
+  get '/thanks' => 'orders#thanks'
+ end
+end  
+
+
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 end
 

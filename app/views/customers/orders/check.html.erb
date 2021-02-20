@@ -1,26 +1,67 @@
 <main>
+  <h2>注文情報確認</h2>
   <table>
-    <title>注文情報確認</title>
-    <th>
+  <tr>
+  <td>
+  <table class = "table table-bordered">
+    <thead>
       <tr>
-        <td>商品名</td>
-        <td>単価(税込)</td>
-        <td>数量</td>
-        <td>小計</td>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
       </tr>
-    </th>
+    </thead>
     <tbody>
       <tr>
-        <%= form_with model: [@order, @order_details], url: customers_orders_path, method: :post, local :true do  |f| %>
-          <td><%= @cart_item.name %></td>
-        <%= f. hidden_field :item_id %>
-        <td><%= ((@cart_item.price* (1+@tax)).to_i).to_s(:delimited, delimiter: ',') %></td>
-        
-        <td><%= @cart_item.amount %></td>
-        <td><%=((@cart_item.price* (1+@tax)).to_i).to_s(:delimited, delimiter: ',')* @cart_item.amount %></td>
+        <% @cart_items.each do |cart_item| %>
+        <td><%= cart_item.item.name %></td>
+        <td><%= ((cart_item.item.price* (1+@tax)).to_i).to_s(:delimited, delimiter: ',') %></td>
+        <td><%= cart_item.amount %></td>
+        <td><%=((cart_item.amount * cart_item.item.price * (1+@tax)).to_i).to_s(:delimited, delimiter: ',') %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </td>
+
+  <td>
+  <table class = "table table-bordered">
+    <tbody>
+      <tr>
+        <th>送料</th>
+        <td><%= @ship_cost %></td>
+      </tr>
+      <tr>
+        <th>商品合計</th>
+        <td><%=((@total_price * (1+@tax)).to_i).to_s(:delimited, delimiter: ',')%></td>
+      </tr>
+      <tr>
+        <th>請求金額</th>
+        <td><%=((@total_price *(1+@tax) +(@ship_cost)).to_i).to_s(:delimited, delimiter: ',')%></td>
       </tr>
     </tbody>
-
   </table>
+  </td>
+  </tr>
+</table>
+
+<table class = "table-sm table-borderless">
+  <tbody>
+    <tr>
+      <th><strong>支払い方法</strong></th>
+      <td> <%= @order.payment_method  %></td>
+    </tr>
+    <tr>
+      <th><strong>お届け先</strong></th>
+      <td><%= @order.postal_code %><%= @order.address %></td>
+      <td><%= @order.name %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%= link_to "注文を確定する" , '', class: "btn btn-success"%>
+
 
 </main>
