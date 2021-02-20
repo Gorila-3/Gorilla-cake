@@ -1,12 +1,17 @@
 class Admins::CustomersController < ApplicationController
  
   def show
+    @customer = Customer.find(params[:id])
   end
 
   def edit
+    @customer = Customer.find(params[:id])
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    @customer.update(customer_params)
+    render "show"
   end
 
   def index
@@ -16,6 +21,7 @@ class Admins::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :email)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana,
+    :first_name_kana, :postal_code, :address, :email, :is_deleted)
   end
 end

@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Cake</title>
     <%= csrf_meta_tags %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <h2>ロゴ</h2>
-    <% if admin_signed_in? %>
-      <li>
-        <%= link_to "商品一覧", admins_items_path %>
-      </li>
-      <li>
-        <%= link_to "会員一覧", admins_customers_path %>
-      </li>
-      <li>
-        <%= link_to "注文履歴一覧", admins_orders_path %>
-      </li>
-      <li>
-        <%= link_to "ジャンル一覧", admins_categories_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% elsif customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", customers_customers_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", customers_items_path %>
-      </li>
-      <li>
-        <%= link_to "カート", customers_cart_items_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", customers_items_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
-    <%= yield %>
+    <header>
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-5 mb-3 bg-white border-bottom shadow-sm">
+        <h3 class="my-0 mr-md-auto font-weight-normal">LOGO</h3>
+          <nav class="my-2 my-md-0 mr-md-3">
+          <% if admin_signed_in? %>
+            <a><%= link_to "商品一覧", admins_items_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "会員一覧", admins_customers_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "注文履歴一覧", admins_orders_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "ジャンル一覧", admins_categories_path, class: "btn btn-outline-dark" %></a>
+            <a>
+              <%= link_to  destroy_admin_session_path, method: :delete do %>
+                <button type="button" class="btn btn-outline-dark">ログアウト</button>
+              <% end %>
+            </a>
+            <div class="text-right">
+              <br><input type="search" class="st-Header_searchInput" autocomplete="off" placeholder="Serch" value name="q" required>
+            </div>
+          <% elsif customer_signed_in? %>
+            <a>ようこそ、<%= current_customer.last_name %>さん!</a>
+            <a><%= link_to "マイページ", customers_customers_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "商品一覧", customers_items_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "カート", customers_cart_items_path, class: "btn btn-outline-dark" %></a>
+            <a>
+              <%= link_to  destroy_customer_session_path, method: :delete do %>
+                <button type="button" class="btn btn-outline-dark">ログアウト</button>
+              <% end %>
+            </a>
+          <% else %>
+            <a><%= link_to "About", about_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "商品一覧", customers_items_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-dark" %></a>
+            <a><%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-dark" %></a>
+          <% end %>
+          </nav>
+      </div>
+      <%= yield %>
+    </header>
   </body>
 </html>
