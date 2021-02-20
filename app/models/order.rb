@@ -5,4 +5,17 @@ class Order < ApplicationRecord
   has_many :order_details
   has_many :items, through: :order_details
 
+  def order_detail_status_auto_update
+    if self.status == "入金確認"
+      self.order_details.each do |order_detail|
+        order_detail.update_attributes(making_status: "制作待ち")
+      end
+    elsif self.status == "入金待ち"
+      self.order_details.each do |order_detail|
+        order_detail.update_attributes(making_status: "制作不可")
+      end
+    end
+  end
 end
+
+

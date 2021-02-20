@@ -15,8 +15,8 @@ class Admins::OrdersController < ApplicationController
   def update
     # binding.pry
     @order = Order.find(params[:id])
-    @order.update(status: order_update_params[:status].to_i)
-    # binding.pry
+    @order.update(order_update_params)
+    @order.order_detail_status_auto_update
     redirect_to admins_order_path
   end
   
