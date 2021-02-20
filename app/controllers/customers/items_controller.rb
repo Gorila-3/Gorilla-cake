@@ -10,7 +10,9 @@ class Customers::ItemsController < ApplicationController
     @tax_in_price = @item.price * (1 + @tax)
     @tax_in_price = @tax_in_price.to_i #上とあわした二行で、値段を三点区切りで表示しています。なんか汚いのでいい方法あったら
     @cart_item = CartItem.new
-    @existed_item = current_customer.cart_items.find_by(item_id: @item.id)
+    if customer_signed_in?
+     @existed_item = current_customer.cart_items.find_by(item_id: @item.id)
+    end
     # binding.pry
   end
 
