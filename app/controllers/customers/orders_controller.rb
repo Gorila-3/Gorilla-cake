@@ -8,7 +8,7 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    
+
     current_customer.cart_items.each do |cart_item|
       order_detail = @order.order_details.build
       order_detail.order_id = @order.id
@@ -19,9 +19,9 @@ class Customers::OrdersController < ApplicationController
       cart_item.destroy
     end
       render :thanks
-      
-      
-      
+
+
+
     if Address.find_by(address: @order_address).nil?
       @address = Address.new
       @address.name = @order.name

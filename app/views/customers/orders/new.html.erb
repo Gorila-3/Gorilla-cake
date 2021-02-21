@@ -1,9 +1,10 @@
 <div class = "container">
   <div class = "row">
-    <div class = "mx-auto">
-      
+    <div class = "col-4">
+
     <fieldset class = "row">
     <legend class = "col">支払い方法</legend>
+
     <%= form_with  model: @order, url: {controller: 'orders', action: 'check' }, local: true do |f| %>
     <div class = "col">
       <div class = "form-check">
@@ -34,12 +35,12 @@
       <lavel>登録先住所</lavel>
       <%=f.collection_select :your_address, @address, :id, :order_address %>
       </div>
-    
+
       <div class = "form-check">
       <%= f.radio_button :shipping, 3 %>
     <label>新しいお届け先</label>
      </div>
-  
+
 
     <%=f.fields_for :new_address do |new| %>
       <div class = "row">
@@ -61,19 +62,10 @@
       </div>
     </div>
     <% end %>
-    <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
-    <% end %>
-  </div>  
-</fieldset> 
-      
-      
-      
-      
-      
-      
-      
-      
-      
+  </div>
+</fieldset>
+<%= f.submit '確認画面へ進む', class: "btn btn-success" %>
+<% end %>
     </div>
   </div>
 </div>
