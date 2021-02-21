@@ -4,4 +4,8 @@ class Item < ApplicationRecord
  has_many :orders, through: :order_details
  belongs_to :category
  attachment :image
+ validates :name, presence: true, uniqueness: true
+ validates :introduction, presence: true
+ validates :category_id, presence: true
+ validates :price, presence: true
 end
