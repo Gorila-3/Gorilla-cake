@@ -30,7 +30,7 @@
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-        <%= attachment_image_tag @item, :image,format: 'jpeg', fallback: "no_image.jpg", size:"60x50" %>
+        <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"60x50" %>
         <%= cart_item.item.name %>
       </td>
       <td>
@@ -56,16 +56,15 @@
   <% if current_customer.cart_items.empty? %>
     <div class = "text-center text-success">カートには何も入っていません。</div>
   <% end%>
-    
-    
-    
-    
-    <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
-    
-    
-      <table align=right class="mr-5">
+  
+  <div class="row3"></div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8"><%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %></div>
+    <div class="col-md-3">
+      <table border="1" width="180" height="40">
         <tr>
-          <th>
+          <th width="50%">
             合計金額:
           </th>
           <td>
@@ -73,7 +72,12 @@
           </td>
         </tr>
       </table>
-      <div class="text-center">
-      <%= link_to "情報入力に進む", new_customers_order_path, class: "btn btn-success"%>
-      </div>
+    </div>
+  </div>
+    
+  <div class="row2"></div>
+  <div class="text-center">
+    <%= link_to "情報入力に進む", new_customers_order_path, class: "btn btn-success"%>
+  </div>
+  
 </div>    

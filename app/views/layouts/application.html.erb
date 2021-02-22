@@ -5,6 +5,7 @@
     <title>Cake</title>
     <%= csrf_meta_tags %>
     
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,7 +14,9 @@
     <header>
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-5 mb-3 bg-white border-bottom shadow-sm">
         <!--<h3 class="my-0 mr-md-auto font-weight-normal">LOGO</h3>-->
-        <%= link_to "LOGO", new_customer_session_path, class: "my-0 mr-md-auto font-weight-normal h3 text-secondary"%>
+        <%= link_to root_path, class: "my-0 mr-md-auto font-weight-normal h3 text-secondary" do %>
+          <i class="fas fa-birthday-cake fa-2x"></i>
+        <% end %>
           <nav class="my-2 my-md-0 mr-md-3">
           <% if admin_signed_in? %>
             <a><%= link_to "商品一覧", admins_items_path, class: "btn btn-outline-dark" %></a>
