@@ -16,6 +16,7 @@ Admin.create(email: "admin@mail", password: "admin123")
 
 
 
+
 #Item.create(category_id: 1, name: "サンプル１", introduction: "説明１", price: 600)
 #Item.create(category_id: 2, name: "サンプル2", introduction: "説明2", price: 1200)
 
