@@ -1,5 +1,6 @@
 <div class="container">
   <h2>会員情報編集</h2>
+  <%= render "admins/shared/error_messages", resource: @customer %>
     <div class= "row">
     <%= form_with model: @customer, url:"/customers/customers", local:true do |f| %>
       <table class="table">
