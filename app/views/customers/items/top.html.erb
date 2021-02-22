@@ -19,7 +19,7 @@
   <div class="row">
     <div class="new-item-list d-flex">
       <% @new_items.each do |new_item|%>
-      <%= attachment_image_tag new_item, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %><br>
+      <%= attachment_image_tag new_item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"100x100" %><br>
       <%= new_item.name %><br>
       <%= new_item.price%>
       <% end %>
