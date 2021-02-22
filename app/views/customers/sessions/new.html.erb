@@ -1,28 +1,41 @@
-<h2>ログイン</h2>
-
-<h3>会員の方はこちらからログイン</h3>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-<table>
-  <div class="field">
-    <tr>
-      <th><%= f.label :メールアドレス %><br /></th>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-    </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col1-md-3"><h3>ログイン</h3></div>
   </div>
+  
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col1-md-3"><h5>会員の方はこちらからログイン</h5></div>
+  </div>
+</div>
 
-  <div class="field">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label :メールアドレス %></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: "50%" %></td>
+    </tr>
     <tr>
       <th><%= f.label :パスワード %><br /></th>
-      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+      <td><%= f.password_field :password, autocomplete: "current-password", size: "50%" %></td>
     </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+    </tr>
+    </div>
+  </table>
+  <% end %>
   </div>
-</table>
+</div>
 
-  <div class="actions ">
-    <%= f.submit "ログイン", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="row2"></div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-3"><%= render "customers/shared/links" %></div>
+</div>
 
-<%= render "customers/shared/links" %>
