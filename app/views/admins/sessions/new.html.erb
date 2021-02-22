@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col1-md-3"><h3>管理者ログイン</h3></div>
   </div>
+  
+  <% if flash[:alert]%>
+    <div class="alert alert-danger">
+      <%= flash[:alert]%>
+    </div>
+  <% end %>
+
+  
   <div class="row">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <table class="table">

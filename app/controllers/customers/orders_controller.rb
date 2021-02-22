@@ -11,8 +11,7 @@ class Customers::OrdersController < ApplicationController
     end
   end
 
-  def create
-    binding.pry
+  def creates
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save

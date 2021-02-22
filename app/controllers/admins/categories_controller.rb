@@ -12,14 +12,17 @@ before_action :authenticate_admin
     else
       @categories = Category.all
       render 'index'
+      # binding.pry
     end
   end
 
   def edit
     @category= Category.find(params[:id])
+    # binding.pry
   end
 
   def update
+      # binding.pry
     @category = Category.find(params[:id])
     if @category.update(category_params)
       redirect_to admins_categories_path

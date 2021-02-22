@@ -14,7 +14,8 @@ devise_for :customers, controllers: {
 
 namespace :admins do
   resources :items, only: [:index, :show, :edit, :create, :update, :new]
-  resources :categories, only: [:index, :edit, :create, :update]
+  resources :categories, only: [:index, :edit, :create]
+  put 'categories/:id/edit' => 'categories#update', as: :category
   resources :customers, only: [:index, :show, :edit, :update]
   resources :orders, only: [:index, :show, :update]
   resources :order_details, only: [:update]
