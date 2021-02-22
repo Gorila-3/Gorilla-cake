@@ -1,6 +1,18 @@
+<% if @customer.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <p>以下の<%= @customer.errors.count %>つを修正して、再入力お願いします。</p>
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <div class="col-md-5 offset-md-1">
   <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
-  <%= form_with model: @customer, url:"/admins/customers/#{@customer.id}", local:true do |f| %>
+  <%= form_with model: @customer, url:"/admins/customers/#{@customer.id}", local: true do |f| %>
   <table class="table">
     <tbody>
       <tr>

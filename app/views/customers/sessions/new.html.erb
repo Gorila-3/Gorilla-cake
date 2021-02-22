@@ -3,15 +3,11 @@
     <div class="col-md-1"></div>
     <div class="col1-md-3"><h3>ログイン</h3></div>
   </div>
-
-<%= content_tag(:div, flash[:alert],class: 'alert alert-danger', :id => "flash_alert") if flash[:alert] %>
-
 <% if flash[:alert]%>
   <div class="alert alert-danger">
     <%= flash[:alert]%>
   </div>
 <% end %>
-
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col1-md-3"><h5>会員の方はこちらからログイン</h5></div>
@@ -28,7 +24,7 @@
       <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: "50%" %></td>
     </tr>
     <tr>
-      <th><%= f.label :パスワード %><br /></th>
+      <td><%= f.label :パスワード %></td>
       <td><%= f.password_field :password, autocomplete: "current-password", size: "50%" %></td>
     </tr>
     <tr>

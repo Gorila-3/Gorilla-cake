@@ -1,8 +1,8 @@
 class Customers::ItemsController < ApplicationController
-  
-  
+
+
   def index
-   @items = Item.all
+   @items = Item.where(is_active: true).all.page(params[:page]).per(8)
   end
 
   def show
@@ -18,8 +18,8 @@ class Customers::ItemsController < ApplicationController
   end
 
   def top
-    @new_items =Item.all.order(created_at: :desc)  #アイテムを、更新した順に取り出している。
-    @new_items.limit!(4)                           #取り出したアイテムを、４つだけにしている。
+    @new_items = Item.where(is_active: true).all.order(created_at: :desc)     #販売中のアイテムを、更新した順に取り出している。
+    @new_items.limit!(4)                                                      #取り出したアイテムを、４つだけにしている。
     # binding.pry
   end
 

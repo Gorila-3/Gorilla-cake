@@ -1,5 +1,12 @@
 <div class="container">
- 
+  
+  <% if flash[:notice] %>
+  <div class="flash text-success">
+   <%= flash[:notice] %>
+  </div>
+ <% end %>
+  
+
     <div class="welcome">
     <div style="text-align:center;">
       <%= image_tag 'cake.jpg' %>
@@ -10,17 +17,17 @@
         </h4>
     </div>
     </div>
-  
- 
+
+
   <div class="row">
     <h2 class="new-item-title">新着商品</h2>
   </div>
-  
+
   <div class="row">
-    <div class="new-item-list d-flex">
+    <div class="new-item-list">
       <% @new_items.each do |new_item|%>
-      <%= attachment_image_tag new_item, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %><br>
-      <%= new_item.name %><br>
+      <%= attachment_image_tag new_item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"170x110" %>
+      <%= new_item.name %>      
       <%= new_item.price%>
       <% end %>
     </div>

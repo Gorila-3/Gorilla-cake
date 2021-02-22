@@ -2,11 +2,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col1-md-3"><h2>商品編集</h2></div>
+    <div class="col1-md-11"><h2>商品編集</h2></div>
 
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-9">
+    <div class="col-md-10">
     <%= form_with model: [:admin,@item], url: admins_item_path, method: :put, local:true do |f| %>
       <table class="table">
         <tr>
@@ -22,8 +22,8 @@
           <th style="border:none;"><%=f.text_area :introduction, size: "35x5" %></th>
         </tr>
         <tr>
-          <th style="border:none;">ジャンル</th>
-          <th style="border:none;"><%=f.collection_select :category, @categories, :id, :name, {prompt: "選択してください"}, size: "1x35" %></th>
+          <th style="border:none;">ジャンル</th>　
+          <th style="border:none;"><%=f.collection_select :category_id, @categories, :id, :name, {prompt: "選択してください"}, size: "1x35" %></th>
         </tr>
         <tr>
           <th style="border:none;"><label for="InputPrice">税抜き価格</label></th>

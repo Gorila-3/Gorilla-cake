@@ -1,40 +1,49 @@
-<h2>注文履歴一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h4>注文履歴一覧</h4></div>
+  </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>注文商品</th>
-      <th>支払い金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order|%>
-    <tr>
-      <td><%= order.created_at.strftime('%Y/%m/%d')%></td>
-      <td class="customer-order-address-list">
-          <p>〒<%= order.postal_code %></p>
-          <p><%= order.address%></p>
-          <p><%= order.name %></p>
-      </td>
-      <td class="customer-order-items">
-        <% order.items.each do |item| %>
-          <%= item.name%><br>
+    
+    
+    
+    <table border="1" width="1100" height="100">
+      <thead>
+        <tr>
+          <th width="10%">注文日</th>
+          <th>配送先</th>
+          <th width="15%">注文商品</th>
+          <th width="10%">支払い金額</th>
+          <th width="10%">ステータス</th>
+          <th width="10%">注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order|%>
+        <tr>
+          <td><%= order.created_at.strftime('%Y/%m/%d')%></td>
+          <td class="customer-order-address-list">
+              <p>
+                〒<%= order.postal_code %>
+                <br><%= order.address%>
+                <br><%= order.name %>
+              </p>
+          </td>
+          <td class="customer-order-items">
+            <% order.items.each do |item| %>
+              <%= item.name%><br>
+            <% end %>
+          </td>
+          <td class="customer-total-price">
+            <%= order.total_payment.to_s(:delimited, delimiter: ',') %>円
+          </td>
+          <td class="customer-order-status">
+            <%= order.status%>
+          </td>
+          <td class="customer-order-detail">
+            <%= link_to "表示する",customers_order_path(order), class: "btn btn-primary "%>
+          </td>
+        </tr>
         <% end %>
-      </td>
-      <td class="customer-total-price">
-        <%= order.total_payment.to_s(:delimited, delimiter: ',') %>円
-      </td>
-      <td class="customer-order-status">
-        <%= order.status%>
-      </td>
-      <td class="customer-order-detail">
-        <%= link_to "表示する",customers_order_path(order), class: "btn btn-primary "%>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+</div>   
