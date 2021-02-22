@@ -1,2 +1,50 @@
-<h1>Customers::Addresses#index</h1>
-<p>Find me in app/views/customers/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h3>配送先登録/一覧</h3></div>
+  </div>
+    <%= render 'layouts/error' , obj: @address %>
+  <%= form_with model: @address, url:"/customers/addresses", method: :post, local:true do |f| %>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
+    <div class="col-md-3"><%= f.text_field :postal_code, size: "25%" %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :address, "住所" %></div>
+    <div class="col-md-3"><%= f.text_field :address, size: "55%" %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :name, "宛名" %></div>
+    <div class="col-md-5"><%= f.text_field :name %></div>
+    <div class="col-md-3"><%= f.submit "新規登録", class: "btn btn-success" %></div>
+  </div>
+  <% end %>
+  
+  <div class="row2">
+    <table border="1">
+      <thead>
+        <tr>
+        <th width="80">郵便番号</th>
+        <th width="200">住所</th>
+        <th width="80">宛名</th>
+        <th colspan="4"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td>
+            <%= link_to "編集する", edit_customers_address_path(address), class: "btn btn-success btn-sm" %>
+            <%= link_to "削除する", customers_address_path(address), method: :delete, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+      
+    
+    

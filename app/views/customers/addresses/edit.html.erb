@@ -1,2 +1,21 @@
-<h1>Customers::Addresses#edit</h1>
-<p>Find me in app/views/customers/addresses/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h3>配送先編集</h3></div>
+  </div>
+  <%= render 'layouts/error' , obj: @address %>
+ <%= form_with model: @address, url: customers_address_path, method: :patch, local:true do |f| %>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></div>
+    <div class="col-md-3"><%= f.text_field :postal_code %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :address, "住所" %></div>
+    <div class="col-md-6"><%= f.text_field :address, size: "50%" %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"><%= f.label :name, "宛名" %></div>
+    <div class="col-md-3"><%= f.text_field :name %></div>
+    <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+  </div>
+ <% end %>
+</div>

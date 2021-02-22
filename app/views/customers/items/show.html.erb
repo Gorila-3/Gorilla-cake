@@ -1,2 +1,34 @@
-<h1>Customers::Items#show</h1>
-<p>Find me in app/views/customers/items/show.html.erb</p>
+<h2>#商品詳細ページ</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= attachment_image_tag @item, :image,format: 'jpeg', fallback: "no_image.jpg", size:"200x200"  %>
+    </div>
+    <div class="col-md-8">
+      <h3 class="item-name"><%= @item.name %></h3>
+      <p class="item-introduction"><%= @item.introduction %></p>
+      
+      <p>¥<%= @tax_in_price.to_s(:delimited, delimiter: ',') %></p>
+      <!--↑delimitedで、値段を三点区切りにしています。-->
+      <p>（税込）</p>
+       
+       <% if customer_signed_in? %>
+        <% if current_customer.cart_items.where(item_id: @item.id).exists? %>
+            <%= form_with model: @existed_item, url: customers_cart_item_path(@existed_item), method: :patch, local:true do |f|%>
+              <%= f.number_field :amount, min: 1, max: 9, value:@existed_item.amount%>
+              <%= f.submit "変更する", class: "btn btn-primary" %>
+            <%end%>
+            
+        <% else %>
+            <%= form_with model: [current_customer, @cart_item], url: customers_cart_items_path, method: :post, local:true do |f|%>
+              <%= f.select :amount, options_for_select(1..9), include_blank: "選択して下さい" %>
+              <%= f.hidden_field :item_id, value: @item.id%>
+              <%= f.hidden_field :customer_id, value: current_customer.id%>
+            <%= f.submit "カートに入れる", class: "btn btn-primary"%>
+          <% end %>
+        <% end %>
+       <% end %>
+    </div>
+  </div>
+</div>

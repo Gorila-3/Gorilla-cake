@@ -1,2 +1,80 @@
-<h1>Customers::Orders#new</h1>
-<p>Find me in app/views/customers/orders/new.html.erb</p>
+<% if flash[:notice] %>
+  <div class="flash text-danger">
+   <%= flash[:notice] %>
+  </div>
+ <% end %>
+ 
+ 
+<div class = "container">
+<div class = "row">
+    <div class = "col-4">
+  <%= form_with  model: @order, url: {controller: 'orders', action: 'check' }, local: true do |f| %>
+    <fieldset class = "row">
+    <legend class = "col">支払い方法</legend>
+
+    <div class = "col">
+      <div class = "form-check">
+        <%= f.radio_button :payment_method,:"クレジットカード"%>
+        <label>クレジットカード</label>
+      </div>
+
+      <div class = "form-check">
+        <%= f.radio_button :payment_method,:"銀行振込" %>
+        <label>銀行振込</label>
+      </div>
+    </div>
+    </fieldset>
+
+    <fieldset class = "row">
+    <legend class = "col">お届け先</legend>
+
+    <div class = "col">
+      <div clss = "form-check">
+      <%=f.radio_button :shipping, 1, checked: true %>
+      <label>ご自身の住所</label>
+        <%= current_customer.postal_code %>
+        <%= current_customer.address %>
+        <%= current_customer.last_name %><%=current_customer.first_name %>
+      </div>
+
+      <div class="form-check">
+      <%=f.radio_button :shipping, 2 %>
+      <lavel>登録先住所</lavel>
+      <%=f.collection_select :your_address, @address, :id, :order_address %>
+      </div>
+
+      <div class = "form-check">
+      <%= f.radio_button :shipping, 3 %>
+    <label>新しいお届け先</label>
+     </div>
+
+
+    <%=f.fields_for :new_address do |new| %>
+      <div class = "row">
+      <label>郵便番号(ハイフンなし)</label>
+        <div class = "col">
+        <%= new.text_field :postal_code, placeholder: "000000" %>
+       </div>
+     </div>
+    <div class = "row">
+      <label>住所</label>
+        <div class = "col">
+        <%= new.text_field :address, placeholder: "東京都渋⾕区代々⽊神園町0-0"%>
+      </div>
+    </div>
+    <div class = "row">
+      <label>宛名</label>
+        <div class = "col">
+        <%= new.text_field :name, placeholder: "令和道⼦"%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<%= f.submit '確認画面へ進む', class: "btn btn-success" %>
+</fieldset>
+</div>
+<% end %>
+</div>
+</div>
+
+
