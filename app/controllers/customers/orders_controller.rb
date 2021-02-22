@@ -6,6 +6,7 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
