@@ -10,14 +10,17 @@ class Admins::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    render "show"
+    if @customer.update(customer_params)
+    redirect_to admins_customer_path(@customer)
+    else
+    render "edit"
+    end
   end
 
   def index
     @customers = Customer.all
   end
-  
+
   private
 
   def customer_params
