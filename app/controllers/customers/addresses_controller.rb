@@ -1,4 +1,6 @@
 class Customers::AddressesController < ApplicationController
+  before_action :authenticate_customer
+  
   def create
     @address = current_customer.addresses.create!(address_params)
     redirect_to customers_addresses_path

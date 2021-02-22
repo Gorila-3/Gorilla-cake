@@ -1,4 +1,5 @@
 class Customers::OrdersController < ApplicationController
+  before_action :authenticate_customer
   def new
     @order = Order.new
     @address = Address.where(customer_id: current_customer)
@@ -43,9 +44,12 @@ class Customers::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   def check
