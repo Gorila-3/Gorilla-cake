@@ -3,7 +3,7 @@ class Customers::OrdersController < ApplicationController
   def new
     @order = Order.new
     @address = Address.where(customer_id: current_customer)
-    
+
     #カート内商品がなければnewにパス
     cart_items = current_customer.cart_items
     if cart_items.empty?
@@ -12,11 +12,10 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-    
+
     # カート商品　保存
     current_customer.cart_items.each do |cart_item|
       order_detail = @order.order_details.build
@@ -58,7 +57,7 @@ class Customers::OrdersController < ApplicationController
     # binding.pry
     @order = Order.new
     @cart_items = current_customer.cart_items
-    @tax = 0.08
+    @tax = 0.1
     @ship_cost = 800
 
     @total_price = 0
