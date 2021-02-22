@@ -16,4 +16,5 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :telephone_number, presence: true, numericality: { only_integer: true }
   validates :encrypted_password, presence: true, length: {minimum: 6}
+  validates :email, presence: true
 end

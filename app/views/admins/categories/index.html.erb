@@ -3,7 +3,7 @@
     <div class="col-md-1"></div>
     <div class="col1-md-3"><h4>ジャンル一覧・追加</h4></div>
   </div>
-  
+  <%= render 'layouts/error' , obj: @category %>
   <%= form_with model: @category, url: admins_categories_path, method: :post, local:true do |f| %>
     <div class="row">
       <div class="col-md-2"><p>ジャンル名</p></div>
