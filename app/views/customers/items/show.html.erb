@@ -4,8 +4,6 @@
     <div class="col1-md-3"><h4>商品詳細ページ</h4></div>
   </div>
 
-
-
   <div class="row">
     <div class="col-md-4">
       <%= attachment_image_tag @item, :image,format: 'jpeg', fallback: "no_image.jpg", size:"300x250"  %>
@@ -13,9 +11,10 @@
     <div class="col-md-8">
       <h3 class="item-name"><%= @item.name %></h3>
       <p class="item-introduction"><%= @item.introduction %></p>
-      
-      <p><font size="6">¥<%= @tax_in_price.to_s(:delimited, delimiter: ',') %></font>（税込）</p>
-      <!--↑delimitedで、値段を三点区切りにしています。-->
+      <div class="item-show">
+        <p><font size="6">¥<%= @tax_in_price.to_s(:delimited, delimiter: ',') %></font>（税込）</p>
+        <!--↑delimitedで、値段を三点区切りにしています。-->
+      </div>
     </div>
   </div>
   

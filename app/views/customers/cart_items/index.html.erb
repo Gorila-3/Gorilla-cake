@@ -6,6 +6,9 @@
       <% if current_customer.cart_items.exists? %>
         <%= link_to "カートを空にする", customers_all_destroy_customers_cart_item_path, method: :delete, class: 'btn btn-danger'%>
       <% end %>
+      <% if current_customer.cart_items.empty? %>
+        <div class = "text-center text-success">カートには何も入っていません。</div>
+      <% end%>
     </div>
   </div>
     
@@ -53,9 +56,6 @@
     </tbody>
   </table>
   
-  <% if current_customer.cart_items.empty? %>
-    <div class = "text-center text-success">カートには何も入っていません。</div>
-  <% end%>
   
   <div class="row3"></div>
   <div class="row">
