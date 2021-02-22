@@ -1,6 +1,6 @@
-<h2>注文履歴一覧</h2>
-
-<table class="table orders-list">
+<div class="col-md-8 offset-md-2">
+<h3>注文履歴一覧</h3>
+<table class="table">
   <thead>
     <tr>
       <th>購入日時</th>
@@ -14,8 +14,7 @@
       <tr>
         <td><%= link_to order.created_at.to_s(:datetime_jp), admins_order_path(order) %></td>
         <td><%=order.name%></td>
-        <td>
-        <%= order.order_details.sum(:amount) %>   <!-- sumメソッドで、amountカラムの合計数を求めています。-->
+        <td><%= order.order_details.sum(:amount) %></td>  <!-- sumメソッドで、amountカラムの合計数を求めています。-->
         <td><%= order.status%></td>
       </tr>
     <%end%>

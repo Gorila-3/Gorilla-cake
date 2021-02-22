@@ -1,8 +1,14 @@
+<% if flash[:notice] %>
+  <div class="flash text-danger">
+   <%= flash[:notice] %>
+  </div>
+ <% end %>
+ 
+ 
 <div class = "container">
-  <div class = "row">
+<div class = "row">
     <div class = "col-4">
-
-    <%= form_with  model: @order, url: {controller: 'orders', action: 'check' }, local: true do |f| %>
+  <%= form_with  model: @order, url: {controller: 'orders', action: 'check' }, local: true do |f| %>
     <fieldset class = "row">
     <legend class = "col">支払い方法</legend>
 
@@ -11,6 +17,7 @@
         <%= f.radio_button :payment_method,:"クレジットカード"%>
         <label>クレジットカード</label>
       </div>
+
       <div class = "form-check">
         <%= f.radio_button :payment_method,:"銀行振込" %>
         <label>銀行振込</label>
@@ -65,9 +72,9 @@
   </div>
 <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
 </fieldset>
+</div>
 <% end %>
-    </div>
-  </div>
+</div>
 </div>
 
 

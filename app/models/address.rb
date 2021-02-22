@@ -4,9 +4,11 @@ class Address < ApplicationRecord
     validates :postal_code, length: {is: 7}, presence: true
     validates :address, presence: true
 
+
+
+    #new にて使用
      def order_address
-       self.postal_code + self.address + self.name
-       
+      self.postal_code + self.address + self.name
      end
 
 end

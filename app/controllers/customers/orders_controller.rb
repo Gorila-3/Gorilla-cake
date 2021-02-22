@@ -3,6 +3,12 @@ class Customers::OrdersController < ApplicationController
   def new
     @order = Order.new
     @address = Address.where(customer_id: current_customer)
+    
+    #カート内商品がなければnewにパス
+    cart_items = current_customer.cart_items
+    if cart_items.empty?
+       redirect_to customers_cart_items_path
+    end
   end
 
   def create
@@ -10,7 +16,8 @@ class Customers::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
-
+    
+    # カート商品　保存
     current_customer.cart_items.each do |cart_item|
       order_detail = @order.order_details.build
       order_detail.order_id = @order.id
@@ -21,9 +28,7 @@ class Customers::OrdersController < ApplicationController
       cart_item.destroy
     end
       render :thanks
-
-
-
+    #新しい住所登録を行なった場合配送先テーブルに保存
     if Address.find_by(address: @order_address).nil?
       @address = Address.new
       @address.name = @order.name
@@ -63,7 +68,6 @@ class Customers::OrdersController < ApplicationController
 
     @total_payment = @total_price * (1 + @tax) + @ship_cost
 
-
     @order.payment_method = params[:order][:payment_method]
     shipping = params[:order][:shipping].to_i
     case shipping
@@ -78,13 +82,26 @@ class Customers::OrdersController < ApplicationController
       @order.address = @registration_address.address
       @order.name = @registration_address.name
     when 3
+      #新しいお届け先が入力されていない場合　newにパス
+      if params[:order][:new_address][:postal_code] == ""  && params[:order][:new_address][:address] == "" && params[:order][:new_address][:name] == ""
+        flash[:notice] = "新しいお届け先が全て入力されていません"
+        redirect_to new_customers_order_path
+      elsif params[:order][:new_address][:postal_code] == ""
+        flash[:notice] = "新しいお届け先の郵便番号が入力されていません"
+        redirect_to new_customers_order_path
+      elsif params[:order][:new_address][:address] == ""
+        flash[:notice] =  "新しいお届け先の住所が入力されていません"
+        redirect_to new_customers_order_path
+      elsif params[:order][:new_address][:name] == ""
+        flash[:notice] = "新しいお届け先の宛名が入力されていません"
+        redirect_to new_customers_order_path
+      else
+
       @order.postal_code = params[:order][:new_address][:postal_code]
       @order.address = params[:order][:new_address][:address]
       @order.name = params[:order][:new_address][:name]
+      end
     end
-
-
-
   end
 
   private
