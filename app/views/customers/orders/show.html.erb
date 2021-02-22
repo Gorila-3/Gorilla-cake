@@ -19,7 +19,7 @@
             </tr>
             <tr>
               <th>支払い方法</th>
-              <td><%= @order.total_payment.to_s(:delimited, delimiter: ',') %>円</td>
+              <td><%= @order.payment_method %></td>
             </tr>
             <tr>
               <th>ステータス</th>
@@ -34,7 +34,7 @@
           <table class="table">
             <tr>
               <th>商品合計</th>
-              <td><%= @order.total_payment - @order.shipping_cost %></td>
+              <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',') %></td>
             </tr>
             <tr>
               <th>配送料</th>
@@ -68,9 +68,9 @@
                 <% @order_details.each do |order_detail|%>
                 <tr>
                   <td><%= order_detail.item.name%></td>
-                  <td><%= order_detail.price.to_s(:delimited, delimiter: ',') %></td>
+                  <td><%= ((order_detail.price * (1+@tax)).to_i).to_s(:delimited, delimiter: ',') %></td>
                   <td><%= order_detail.amount %></td>
-                  <td><%= (order_detail.price * order_detail.amount).to_s(:delimited, delimiter: ',') %></td>
+                  <td><%= (((order_detail.price * (1+@tax)) * order_detail.amount).to_i).to_s(:delimited, delimiter: ',') %></td>
                 </tr>
                 <% end %>
               </tbody>
@@ -80,3 +80,5 @@
         <div class="col-md-4"></div>
       </div>
     </div>
+    
+    (order_detail.price * (1+@tax))

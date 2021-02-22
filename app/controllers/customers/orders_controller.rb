@@ -12,6 +12,7 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
@@ -50,9 +51,11 @@ class Customers::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @tax=0.08
   end
 
   def check
+    # binding.pry
     @order = Order.new
     @cart_items = current_customer.cart_items
     @tax = 0.08
