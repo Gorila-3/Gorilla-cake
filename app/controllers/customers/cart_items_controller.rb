@@ -35,7 +35,6 @@ class Customers::CartItemsController < ApplicationController
   end
 
   def index
-    # @item = Item.find(item.id)
     @cart_items = current_customer.cart_items
     @tax = 0.08
     # binding.pry
