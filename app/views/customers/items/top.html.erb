@@ -24,11 +24,14 @@
   </div>
 
   <div class="row">
-    <div class="new-item-list">
       <% @new_items.each do |new_item|%>
-      <%= attachment_image_tag new_item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"170x110" %>
-      <p><%= new_item.name %></p>     
-      <p><%= new_item.price%></p>
+
+    <div class="new-item-list d-flex">
+      <ul>
+      <li><%= attachment_image_tag new_item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"170x110" %></li>
+      <li><%= new_item.name %><%= new_item.price%></li>
+      </ul>
+
       <% end %>
     </div>
   </div>

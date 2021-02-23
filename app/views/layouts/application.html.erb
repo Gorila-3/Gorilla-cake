@@ -18,6 +18,8 @@
         <%= link_to root_path, class: "my-0 mr-md-auto font-weight-normal h3 text-secondary" do %>
           <i class="fas fa-birthday-cake fa-2x"></i>
         <% end %>
+
+    
           <nav class="my-2 my-md-0 mr-md-3">
           <% if admin_signed_in? %>
             <a><%= link_to "商品一覧", admins_items_path, class: "btn btn-outline-dark" %></a>
