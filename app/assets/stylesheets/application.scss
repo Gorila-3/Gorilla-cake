@@ -66,3 +66,13 @@
     display: inline;
     text-align: center;
   }
+  
+.right-order-check-list td,
+.left-order-check-list td {
+  vertical-align: middle;
+}
+
+#check-title .h2{
+ width: 20%;
+ padding: 0 auto;
+}
