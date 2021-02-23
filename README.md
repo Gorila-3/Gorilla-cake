@@ -29,3 +29,11 @@ Rails バージョン 5.2.4
 ・pry-rails   ・Bootstrap
 
 ・kaminari    ・rails-i18n
+
+# 開発者
+
+**チーム名**
+ゴリラ3
+
+**チームメンバー**
+・かい　・ゆうすけ　・りょうき
