@@ -59,10 +59,24 @@
 }
 
 .welcome img {
-  width: 50%;
+    width: 50%;
   }
   
 .col1-md-8 {
     display: inline;
     text-align: center;
+  }
+  
+  .items {
+    margin: 20px;
+  }
+  
+  .items-all {
+    padding-left: 60px;
+    display: flex;
+    flex-wrap: wrap;   
+  }
+  
+  .item-show {
+    margin-top: 100px;
   }
