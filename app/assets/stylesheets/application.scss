@@ -59,7 +59,7 @@
 }
 
 .welcome img {
-  width: 50%;
+    width: 50%;
   }
   
 .col1-md-8 {
@@ -67,6 +67,7 @@
     text-align: center;
   }
   
+
 .right-order-check-list td,
 .left-order-check-list td {
   vertical-align: middle;
@@ -76,3 +77,18 @@
  width: 20%;
  padding: 0 auto;
 }
+
+  .items {
+    margin: 20px;
+  }
+  
+  .items-all {
+    padding-left: 60px;
+    display: flex;
+    flex-wrap: wrap;   
+  }
+  
+  .item-show {
+    margin-top: 100px;
+  }
+

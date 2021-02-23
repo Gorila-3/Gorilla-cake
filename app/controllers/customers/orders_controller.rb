@@ -59,7 +59,7 @@ class Customers::OrdersController < ApplicationController
     # binding.pry
     @order = Order.new
     @cart_items = current_customer.cart_items
-    @tax = 0.1
+    @tax = 0.08
     @ship_cost = 800
 
     @total_price = 0
