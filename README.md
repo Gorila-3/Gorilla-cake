@@ -22,10 +22,10 @@ Rails バージョン 5.2.4
 
 **使用したjem**
 
-・devise   　・refile
+・devise      ・refile
 
 ・refile-mini_magick
 
-・pry-rails  　・Bootstrap
+・pry-rails   ・Bootstrap
 
-・kaminari  　・rails-i18n
+・kaminari    ・rails-i18n
