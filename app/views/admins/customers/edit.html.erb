@@ -1,2 +1,63 @@
-<h1>Admins::Customers#edit</h1>
-<p>Find me in app/views/admins/customers/edit.html.erb</p>
+<% if @customer.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <p>以下の<%= @customer.errors.count %>つを修正して、再入力お願いします。</p>
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h4><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h4></div>
+  </div>
+  
+  <div class="row3"></div>
+  
+  <div class="row">
+    <div class="col-md-8">
+    <%= form_with model: @customer, url:"/admins/customers/#{@customer.id}", local: true do |f| %>
+      <table class="table">
+        <tr>
+          <th style="border:none;">会員ID</th>
+          <th style="border:none;"><%= @customer.id %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">氏名</th>
+          <th style="border:none;"><%= f.text_field :last_name %></th>
+          <th style="border:none;"><%= f.text_field :first_name %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">フリガナ</th>
+          <th style="border:none;"><%= f.text_field :last_name_kana %></th>
+          <th style="border:none;"><%= f.text_field :first_name_kana %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">郵便番号</th>
+          <th style="border:none;"><%= f.text_field :postal_code %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">住所</th>
+          <th style="border:none;"><%= f.text_field :address %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">電話番号</th>
+          <th style="border:none;"><%= f.telephone_field :telephone_number %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">メールアドレス</th>
+          <th style="border:none;"><%= f.email_field :email %></th>
+        </tr>
+        <tr>
+          <th style="border:none;">会員ステータス</th>
+          <th style="border:none;"><%= f.radio_button "is_deleted", false %>有効<%= f.radio_button "is_deleted", true %>退会</th>
+        </tr>
+      </table>
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
+    <% end %>
+    </div>
+  </div>
+  
+</div>

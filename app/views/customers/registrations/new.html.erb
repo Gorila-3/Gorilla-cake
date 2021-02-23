@@ -1,29 +1,76 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h4>新規会員登録</h4></div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  
+  <div class="row">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "customers/shared/error_messages", resource: resource %>
+  <table class="table">
+    <tr>
+      <th style="border:none;">名前</th>
+      <td style="border:none;">
+        <%= f.label :（姓） %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name"%>
+      </td>
+      <td style="border:none;">
+        <%= f.label :（名） %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name"%>
+      </td>
+    </tr>
+    <tr>
+      <th style="border:none;">フリガナ</th>
+      <td style="border:none;">
+        <%= f.label :（セイ） %>
+        <%= f.text_field :last_name_kana, autocomplete: "first_name_kana"%>
+      </td>
+      <td style="border:none;">
+        <%= f.label :（メイ） %>
+        <%= f.text_field :first_name_kana, autocomplete: "last_name_kana"%>
+      </td>
+    </tr>
+    <tr>
+      <th style="border:none;"><%= f.label :メールアドレス %><br /></th>
+      <td style="border:none;"><%= f.email_field :email, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <th style="border:none;"><%= f.label :郵便番号（ハイフンなし） %><br /></th>
+      <td style="border:none;"><%= f.text_field :postal_code, autocomplete: ":postal_code"%></td>
+    </tr>
+    
+    <tr>
+      <th style="border:none;"><%= f.label :住所 %></th>
+      <td style="border:none;"><%= f.text_field :address, autocomplete: ":address", size: "50%"%></td>
+    </tr>
+    
+    <tr>
+      <th style="border:none;"><%= f.label :電話番号（ハイフンなし） %></th>
+      <td style="border:none;"><%= f.text_field :telephone_number, autocomplete: ":telephone_number"%></td>
+    </tr>
+    
+    <tr>
+      <th style="border:none;"> <%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %><br /></th>
+      <td style="border:none;"> <%= f.password_field :password, autocomplete: "new-password" %></td>
+    </tr>
+    
+    <tr>
+      <th style="border:none;"><%= f.label :パスワード（確認用） %><br /></th>
+      <td style="border:none;"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+    <tr>
+      <th style="border:none;"></th>
+      <th style="border:none;"><%= f.submit "新規登録", class: "btn btn-success btn-lg" %></th>
+    </tr>
+  </table>
+      
+  <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  
+  <div class="row">
+    <div class="col-md-3"><%= render "customers/shared/links" %></div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+  
+</div>

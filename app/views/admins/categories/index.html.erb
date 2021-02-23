@@ -1,2 +1,30 @@
-<h1>Admins::Categories#index</h1>
-<p>Find me in app/views/admins/categories/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col1-md-3"><h4>ジャンル一覧・追加</h4></div>
+  </div>
+  <%= render 'layouts/error' , obj: @category %>
+  <%= form_with model: @category, url: admins_categories_path, method: :post, local:true do |f| %>
+    <div class="row">
+      <div class="col-md-2"><p>ジャンル名</p></div>
+      <div class="col-md-4"><%= f.text_field :name, size: "30%" %></div>
+      <div class="col-md-3"><%= f.submit '新規登録',class: "btn btn-success btn-lg" %></div>
+    </div>
+  <% end %>
+  
+  <div class="row2">
+    <div class="col-md-5">
+      <table class="table">
+        <% @categories.each do |category| %>
+          <tr>
+            <th><%= category.name %></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th><%= link_to '編集する',edit_admins_category_path(category), class: "btn btn-success" %></th>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>    

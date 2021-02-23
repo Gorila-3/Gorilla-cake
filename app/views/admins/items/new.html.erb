@@ -1,2 +1,50 @@
-<h1>Admins::Items#new</h1>
-<p>Find me in app/views/admins/items/new.html.erb</p>
+<div class = "container">
+  <div class= "row">
+    <div class="col-md-1"></div>
+    <div class ="col1-md-3">
+      <h2>商品新規登録</h2>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <%= render 'layouts/error', obj: @item %>
+    <%= form_with model: [:admin,@item], url: admins_items_path, method: :post, local:true do |f| %>
+      <table class="table">
+        <tr>
+          <th style="border:none;"><label for ="InputImage">商品画像</label></th>
+          <th style="border:none;"><%= f.attachment_field :image %></th>
+        </tr>
+        <tr>
+          <th style="border:none;"><lavel for ="InputName">商品名</lavel></th>
+          <th style="border:none;"><%=f.text_field :name, placeholder: "商品名", size: "35%"%></th>
+        </tr>
+        <tr>
+          <th style="border:none;"><lavel for ="InputIntroduction">商品説明</lavel></th>
+          <th style="border:none;"><%=f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "35x5" %></th>
+        </tr>
+        <tr>
+          <th style="border:none;"><label>ジャンル</label></th>
+          <th style="border:none;"><%=f.collection_select :category_id, @categories, :id, :name, {prompt: "選択してください"} %></th>
+        </tr>
+        <tr>
+          <th style="border:none;"><label for="InputPrice">税抜き価格</label></th>
+          <th style="border:none;"><%=f.text_field :price, placeholder: 1000, size: "35%" %>円</th>
+        </tr>
+        <tr>
+          <th style="border:none;"><label>販売ステータス</label></th>
+          <th style="border:none;">
+            <div class="status-radio form-group-inline">
+              販売中<%=f.radio_button :is_active, true %>
+              販売停止中<%=f.radio_button :is_active, false %>
+            </div>
+          </th>
+        </tr>
+      </table>
+        <%= f.submit '新規登録', class: "btn btn-success" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

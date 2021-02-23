@@ -1,2 +1,67 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col1-md-3"><h4>注文履歴詳細</h4></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table">
+        <tr>
+         <th style="border:none;">購入者</th>
+         <td style="border:none;"><%= @order.name%></td>
+        </tr>
+        <tr>
+          <th style="border:none;">注文日</th>
+          <td style="border:none;"><%= @order.created_at.strftime('%Y/%m/%d')%></td>
+        </tr>
+        <tr>
+          <th style="border:none;">配送先</th>
+          <td style="border:none;"><%= @order.address %></td>
+        </tr>
+        <tr>
+          <th style="border:none;">注文ステータス</th>
+          <td style="border:none;"><%= @order.status %></td>
+          <td style="border:none;">
+            <%= form_with model: [:admin,@order], url: admins_order_path,method: :patch, local:true do |f|%>
+             <%= f.select :status, Order.statuses.keys %>
+             <%= f.submit '更新', class: "btn btn-success btn-sm"%>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail|%>
+          <tr>
+            <td style="border:none;"><%= order_detail.item.name%></td>
+            <td style="border:none;"><%= order_detail.price.to_s(:delimited, delimiter: ',')%></td>
+            <td style="border:none;"><%=order_detail.amount %></td>
+            <td style="border:none;"><%= (order_detail.amount * order_detail.price).to_s(:delimited, delimiter: ',')%></td>
+            <td style="border:none;">
+             <%= order_detail.making_status %>
+             <%= form_with model: [:admin,order_detail], url: admins_order_detail_path(order_detail), method: :patch, local:true do |f|%>
+             <%= f.select :making_status, OrderDetail.making_statuses.keys %>
+             <%= f.submit '更新'%>
+             <%end%>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

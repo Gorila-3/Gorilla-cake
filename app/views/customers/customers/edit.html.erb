@@ -1,2 +1,43 @@
-<h1>Customers::Customers#edit</h1>
-<p>Find me in app/views/customers/customers/edit.html.erb</p>
+<div class="container">
+  <h2>会員情報編集</h2>
+  <%= render "admins/shared/error_messages", resource: @customer %>
+    <div class= "row">
+    <%= form_with model: @customer, url:"/customers/customers", local:true do |f| %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th style="border:none;">氏名</th>
+            <th style="border:none;"><%= f.text_field :last_name %></th>
+            <th style="border:none;"><%= f.text_field :first_name %></th>
+          </tr>
+          <tr>
+            <th style="border:none;">フリガナ</th>
+            <th style="border:none;"><%= f.text_field :last_name_kana %></th>
+            <th style="border:none;"><%= f.text_field :first_name_kana %></th>
+          </tr>
+          <tr>
+            <th style="border:none;">郵便番号</th>
+            <th style="border:none;"><%= f.text_field :postal_code %></th>
+          </tr>
+          <tr>
+            <th style="border:none;">住所</th>
+            <th style="border:none;"><%= f.text_field :address %></th>
+          </tr>
+          <tr>
+            <th style="border:none;">電話番号</th>
+            <th style="border:none;"><%= f.telephone_field :telephone_number %></th>
+          </tr>
+          <tr>
+            <th style="border:none;">メールアドレス</th>
+            <th style="border:none;"><%= f.email_field :email %></th>
+          </tr>
+          <tr>
+            <th style="border:none;"></th>
+            <th style="border:none;"><%= f.submit "編集内容を保存", class: "btn btn-success" %></th>
+            <th style="border:none;"><%= link_to "退会する", customers_customers_out_show_path, class: "btn btn-danger" %></th>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    </div>
+</div>

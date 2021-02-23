@@ -1,2 +1,45 @@
-<h1>Customers::Items#top</h1>
-<p>Find me in app/views/customers/items/top.html.erb</p>
+<div class="container">
+  
+  <% if flash[:notice] %>
+  <div class="flash text-success">
+   <%= flash[:notice] %>
+  </div>
+ <% end %>
+  
+
+    <div class="welcome">
+    <div style="text-align:center;">
+      <%= image_tag 'cake.jpg' %>
+        <h4>ようこそ、ながのCAKEへ！
+        <br>このサイトは、ケーキ販売のECサイトになります。
+        <br>会員でない方も商品の閲覧はできますが、
+        <br>購入には会員登録が必要になります。
+        </h4>
+    </div>
+    </div>
+
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <h2 class="new-item-title">新着商品</h2>
+  </div>
+
+
+  <div class="new-item-list">
+    <% @new_items.each do |new_item|%>
+      <div class="items" >
+        <p>
+          <%= attachment_image_tag new_item, :image, format: 'jpeg', fallback: "no_image.jpg", size:"200x130" %><br>
+          <%= new_item.name %><br>
+          ¥<%= new_item.price%>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  
+
+  <div style="text-align:right;">
+    <%= link_to "全ての商品を見る", customers_items_path%>
+  </div>
+
+</div>
